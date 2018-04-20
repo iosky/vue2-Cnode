@@ -1,42 +1,41 @@
 <template>
   <nav class="header-nav">
-    <div class="nav-wrapper">
-      <router-link :to="{name: 'home'}">
-        <div class="cnode-icon">
-          <img src="https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg"
-               alt="cnode icon">
-        </div>
-      </router-link>
-      <router-link :to="{name: 'search'}">
-        <form action=""
-              id="search-form"
-              class="nav-form">
-          <input type="text"
-                 name="nav-input"
-                 id="seach-input">
-        </form>
-      </router-link>
-      <ul class="nav-item">
-        <li>
-          <router-link :to="{name: 'home'}">首页</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'home'}">新手入门</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'home'}">API</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'home'}">关于</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'home'}">注册</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'home'}">登录</router-link>
-        </li>
-      </ul>
-    </div>
+    <router-link :to="{name: 'home'}">
+      <div class="cnode-icon">
+        <img src="https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg"
+             alt="cnode icon">
+      </div>
+    </router-link>
+    <router-link :to="{name: 'search'}"
+                 class="search">
+      <form action=""
+            id="search-form"
+            class="nav-form">
+        <input type="text"
+               name="nav-input"
+               id="seach-input">
+      </form>
+    </router-link>
+    <ul class="nav-item">
+      <li>
+        <router-link :to="{name: 'home'}">首页</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'home'}">新手入门</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'home'}">API</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'home'}">关于</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'home'}">注册</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'home'}">登录</router-link>
+      </li>
+    </ul>
   </nav>
 </template>
 
@@ -52,19 +51,28 @@ export default {
 <style lang="less" scoped>
 @nav-width: 60px;
 .header-nav {
-  width: 100%;
+  width: 1280px;
   height: @nav-width;
   background: #444;
-}
-
-.nav-wrapper {
-  width: 80%;
-  height: @nav-width;
-  margin: 0 auto;
   display: flex;
-  align-items: center;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: -1;
+    background: #444444;
+  }
 }
 
+.search {
+  margin-right: 598px;
+  display: flex;
+  align-content: center;
+}
 .cnode-icon {
   width: 120px;
   height: @nav-width;
@@ -76,7 +84,7 @@ export default {
   }
 }
 .nav-form {
-  padding-right: 469px;
+  line-height: 60px;
   input {
     border-radius: 100000px;
     height: @nav-width / 2.5;

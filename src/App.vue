@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Header/>
-    <router-view name="main"></router-view>
-    <router-view name="sidebar"></router-view>
+    <div class="wrapper">
+      <Header/>
+      <router-view name="main"></router-view>
+      <router-view name="sidebar"></router-view>
+    </div>
   </div>
 </template>
 
@@ -17,6 +19,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.wrapper {
+  width: 1280px;
+  margin: 0 auto;
+}
 </style>
 
