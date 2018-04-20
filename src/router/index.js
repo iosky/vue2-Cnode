@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import PostList from '../components/postlist'
 import UserInfo from '../components/userinfo'
-import PostContent from '../components/postinfo'
+import PostInfo from '../components/postinfo'
 
 Vue.use(Router)
 
@@ -29,10 +29,10 @@ export default new Router({
       }
     },
     {
-      path: '/:author_id',
-      name: 'post_content',
+      path: '/:id',
+      name: 'post_info',
       components: {
-        main: PostContent
+        main: PostInfo
       }
     }
   ]

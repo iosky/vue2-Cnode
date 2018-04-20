@@ -5,12 +5,13 @@
           :key="item.id">
         <router-link :to="{name: 'user_info', params: {name: item.author.loginname}}">
           <img :src="item.author.avatar_url"
-               :alt="item.author.loginname">
+               :alt="item.author.loginname"
+               :title="item.author.loginname">
         </router-link>
         <div class="num">
           {{item.reply_count}} / {{item.visit_count}}
         </div>
-        <router-link :to="{name: 'post_content', params: {author_id: item.author_id}}"
+        <router-link :to="{name: 'post_info', params: {id: item.id}}"
                      class="title">
           {{item.title}}
         </router-link>
