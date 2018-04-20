@@ -55,6 +55,7 @@ export default {
   height: @nav-width;
   background: #444;
   display: flex;
+  margin-bottom: 10px;
   &:before {
     content: '';
     display: block;

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import PostList from '../components/postlist'
 import UserInfo from '../components/userinfo'
 import PostInfo from '../components/postinfo'
+import UserBar from '../components/userbar'
 
 Vue.use(Router)
 
@@ -29,10 +30,11 @@ export default new Router({
       }
     },
     {
-      path: '/:id',
+      path: '/:id&author=:name',
       name: 'post_info',
       components: {
-        main: PostInfo
+        main: PostInfo,
+        sidebar: UserBar
       }
     }
   ]

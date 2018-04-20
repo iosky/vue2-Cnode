@@ -33,7 +33,6 @@ export default {
         .then(response => {
           if (response.data.success === true) {
             this.post = response.data.data
-            console.log(response.data.data)
           }
         })
         .catch(err => {
@@ -82,7 +81,7 @@ export default {
 .article {
   width: 1000px;
   background: #ffffff;
-
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
   h2 {
     padding: 20px 60px;
   }

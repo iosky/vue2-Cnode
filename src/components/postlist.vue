@@ -11,7 +11,7 @@
         <div class="num">
           {{item.reply_count}} / {{item.visit_count}}
         </div>
-        <router-link :to="{name: 'post_info', params: {id: item.id}}"
+        <router-link :to="{name: 'post_info', params: {id: item.id, name: item.author.loginname}}"
                      class="title">
           {{item.title}}
         </router-link>
@@ -44,7 +44,6 @@ export default {
         .then(response => {
           if (response.data.success === true) {
             this.post = response.data.data
-            console.log(response.data.data)
           }
         })
         .catch(error => {
@@ -88,6 +87,7 @@ export default {
 .post-list {
   width: 1000px;
   background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
 }
 
 .list-item li {
