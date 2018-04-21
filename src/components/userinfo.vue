@@ -27,6 +27,7 @@
       </div>
     </div>
     <ul class="recent-topics">
+      <h2>最近主题</h2>
       <li v-for="item in user.recent_topics"
           :key="item.id">
         <router-link :to="{name: 'post_info' ,params: {id: item.id, name: item.author.loginname}}">
@@ -34,7 +35,15 @@
         </router-link>
       </li>
     </ul>
-    <ul class="recent-replies"></ul>
+    <ul class="recent-replies">
+      <h2>最近回复</h2>
+      <li v-for="item in user.recent_replies"
+          :key="item.id">
+        <router-link :to="{name: 'post_info', params: {id: item.id, name: item.author.loginname}}">
+          {{item.title}}
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -55,7 +64,6 @@ export default {
         .then(response => {
           if (response.data.success === true) {
             this.user = response.data.data
-            console.log(response.data.data)
           }
         })
         .catch(error => {
@@ -88,7 +96,7 @@ export default {
       } else if (time / 2592000000 < 12) {
         return Number.parseInt(time / 2592000000) + '月前'
       } else {
-        return Number.parseInt(time < 31536000000) + '年前'
+        return Number.parseInt(time / 31536000000) + '年前'
       }
     }
   },
@@ -131,6 +139,8 @@ export default {
 h2 {
   font-size: 16px;
   padding: 10px;
+  font-weight: normal;
+  color: #888;
   background: #f6f6f6;
 }
 
@@ -158,11 +168,13 @@ h2 {
   }
 }
 
-.recent-topics {
+.recent-topics,
+.recent-replies {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
   background: #ffffff;
   margin-top: 20px;
   padding-left: 10px;
+  transition: all 0.4s ease;
   li {
     height: 50px;
     line-height: 50px;
@@ -173,6 +185,10 @@ h2 {
         color: #888888;
       }
     }
+  }
+
+  &:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   }
 }
 </style>

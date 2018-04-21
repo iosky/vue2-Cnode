@@ -62,7 +62,7 @@ export default {
       } else if (time / 2592000000 < 12) {
         return Number.parseInt(time / 2592000000) + '月前'
       } else {
-        return Number.parseInt(time < 31536000000) + '年前'
+        return Number.parseInt(time / 31536000000) + '年前'
       }
     }
   },
