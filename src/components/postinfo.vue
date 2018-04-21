@@ -1,14 +1,44 @@
 <template>
   <div class="article">
-    <h2>{{post.title}}</h2>
-    <div class="article-detail">
-      <div class="time">发布时间： {{post.create_at | timeFormat}}</div>
-      <div class="author">作者: {{post.author.loginname}}</div>
-      <div class="visit-count">{{ post.visit_count }} 次浏览</div>
+    <div class="article-main-content">
+      <h2>{{post.title}}</h2>
+      <div class="article-detail">
+        <div class="time">发布时间： {{post.create_at | timeFormat}}</div>
+        <div class="author">作者: {{post.author.loginname}}</div>
+        <div class="visit-count">{{ post.visit_count }} 次浏览</div>
+      </div>
+      <div class="article-content"
+           v-html="post.content">
+      </div>
     </div>
-    <div class="article-content"
-         v-html="post.content">
-    </div>
+    <ul class="replies">
+      <h2>{{ post.reply_count }} 回复</h2>
+      <li v-for="reply in post.replies"
+          :key="reply.id"
+          class="reply-item">
+        <router-link :to="{ name: 'user_info', params: {name: reply.author.loginname }}">
+          <img :src="reply.author.avatar_url"
+               :alt="reply.author.loginname"
+               :title="reply.author.loginname">
+          <div class="reply-main">
+            <div class="detail">
+              <span>
+                {{ reply.author.loginname }}
+              </span>
+              <!-- FIXME: 循环引用 -->
+              <!-- <span>
+                {{ index ++ }}楼
+              </span> -->
+              <span>
+                {{ reply.create_at | timeFormat }}
+              </span>
+            </div>
+            <div class="reply"
+                 v-html="reply.content"></div>
+          </div>
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -33,6 +63,7 @@ export default {
         .then(response => {
           if (response.data.success === true) {
             this.post = response.data.data
+            console.log(response.data.data)
           }
         })
         .catch(err => {
@@ -80,14 +111,16 @@ export default {
 <style lang="less">
 .article {
   width: 1000px;
-  background: #ffffff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
   h2 {
+    background: #ffffff;
     padding: 20px 60px;
   }
 }
 .article-detail {
   display: flex;
+  background: #ffffff;
+  padding: 10px 0;
+  border-bottom: 1px solid #cac4c4;
   * {
     margin: 0 20px;
     position: relative;
@@ -122,6 +155,50 @@ export default {
 }
 
 .article-content {
-  padding-left: 20px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.replies {
+  background: #ffffff;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+
+  h2 {
+    background: #f6f6f6;
+    font-size: 16px;
+    color: #444;
+    font-weight: normal;
+    padding: 20px 20px;
+  }
+
+  .reply-item {
+    padding: 10px 10px 20px 10px;
+    border-bottom: 1px solid #cac4c4;
+    a {
+      display: flex;
+    }
+    img {
+      margin: 10px;
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+.reply-main {
+  width: 950px;
+}
+
+.detail {
+  color: #999;
+  transition: all 0.3s ease;
+  &:hover {
+    text-decoration: underline;
+    color: firebrick;
+  }
+}
+.article-main-content {
+  background: #ffffff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
 }
 </style>

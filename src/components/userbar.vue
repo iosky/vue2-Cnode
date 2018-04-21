@@ -53,7 +53,6 @@ export default {
         .then(response => {
           if (response.data.success === true) {
             this.user = response.data.data
-            console.log(response.data.data)
           }
         })
         .catch(err => {
@@ -80,6 +79,7 @@ export default {
 
 <style lang="less" scoped>
 .user-info {
+  max-height: 800px;
   width: 270px;
   margin-left: 10px;
 }
